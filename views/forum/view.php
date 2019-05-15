@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use mihaildev\ckeditor\CKEditor;
 
 $this->registerJsFile('js/forum.js');
 /* @var $this yii\web\View */
@@ -57,22 +58,19 @@ $this->title = $forum->name;
         <?php endforeach; ?>
     <?php endif; ?>
     <?php if (!Yii::$app->user->isGuest) : ?>
-    <div class='forum_comment_form'>
-        <?php $form = ActiveForm::begin([
-            'action' => ['forum/comment', 'id' => $forum->forum_id],
-            'options' => ['class' => '', 'role' => 'form'],
-            'fieldConfig' => [
-                'options' => [
-                    'tag' => false,
+        <div class='forum_comment_form'>
+            <?php $form = ActiveForm::begin([
+                'action' => ['forum/comment', 'id' => $forum->forum_id],
+                'options' => ['class' => '', 'role' => 'form'],
+            ]) ?>
+            <?= $form->field($commentForm, 'comment')->widget(CKEditor::className(), [
+                'editorOptions' => [
+                    'preset' => 'basic', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+                    'inline' => false, //по умолчанию false
                 ],
-            ],
-        ]) ?>
-        <?= $form->field($commentForm, 'comment')->textarea(['placeholder' => 'Введите комментарий.', 'class' => '', 'id' => 'comment'])->label(false) ?>
-        <button class='forum_child_comment_form_button' type="submit">Отправить</button>
-        <span id='code' class='forum_comment_form_button'>
-            <Код>
-        </span>
-        <?php ActiveForm::end(); ?>
-    </div>
+            ]); ?>
+            <button class='forum_child_comment_form_button' type="submit">Отправить</button>
+            <?php ActiveForm::end(); ?>
+        </div>
     <?php endif; ?>
 </div>

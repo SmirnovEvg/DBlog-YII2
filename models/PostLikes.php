@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\News;
 
 /**
  * This is the model class for table "post_likes".
@@ -33,7 +34,7 @@ class PostLikes extends \yii\db\ActiveRecord
             [['post_id', 'user_id'], 'required'],
             [['post_id', 'user_id'], 'integer'],
             [['post_id', 'user_id'], 'unique', 'targetAttribute' => ['post_id', 'user_id']],
-            [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'post_id']],
+            [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => News::className(), 'targetAttribute' => ['post_id' => 'post_id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }

@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use app\models\Languages;
 use app\models\PostLikes;
 use app\models\LikeForm;
+use Codeception\Module\Yii2;
 
 /**
  * NewsController implements the CRUD actions for News model.
@@ -61,15 +62,37 @@ class NewsController extends Controller
      */
     public function actionView($id)
     {
-        $likeForm = new LikeForm();
+        $user = Yii::$app->user->identity->id;
+        if(PostLikes::findOne(['post_id'=> $id, 'user_id' => $user])){
+            $isLike = 1;
+        }
+        else{
+            $isLike = 2;
+        }
         $news = News::findOne($id);
         $likes = PostLikes::find()->where(['post_id' => $id])->count();
 
         return $this->render('view', [
             'news' => $news,
             'likes' => $likes,
-            'likeForm' => $likeForm
+            'isLike' => $isLike
         ]);
+    }
+
+    public function actionLike(){
+        $id = Yii::$app->request->get('id');
+        $user = Yii::$app->user->identity->id;
+
+        if(PostLikes::findOne(['post_id'=> $id, 'user_id' => $user])){
+            PostLikes::findOne(['post_id'=> $id, 'user_id' => $user])->delete();
+        }
+        else{
+           $post = new PostLikes();
+           $post->post_id = $id;
+           $post->user_id = $user;
+           $post->save();
+        }
+        exit;
     }
 
     public function actionPostLikes($id)

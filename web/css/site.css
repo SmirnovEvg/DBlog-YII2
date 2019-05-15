@@ -755,42 +755,8 @@ a.desc:after {
 }
 
 .forum_comment_form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
   font-family: poiret;
   margin-top: 10px;
-}
-
-.forum_comment_form form {
-  width: 980px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.forum_comment_form form textarea {
-  width: 100%;
-  height: 150px;
-  border-radius: 15px;
-  border: 1px solid #ccd0d7;
-  background-color: #e9e9e9;
-  padding: 10px 15px;
-  font-size: 1.3em;
-  margin: 10px 0 18px 0;
-}
-
-.forum_comment_form form span {
-  background-color: #ccd0d7;
-  cursor: pointer;
 }
 
 .forum_comment_form_button {
@@ -874,22 +840,6 @@ a.desc:after {
   display: flex;
 }
 
-.forum_child_comment_form form textarea {
-  width: 100%;
-  height: 150px;
-  border-radius: 15px;
-  border: 1px solid #ccd0d7;
-  background-color: #e9e9e9;
-  padding: 5px 15px;
-  font-size: 1.1em;
-  margin: 40px 0 10px 0;
-}
-
-.forum_child_comment_form form span {
-  background-color: #ccd0d7;
-  cursor: pointer;
-}
-
 .forum_child_comment_form_button {
   background-color: #aad1d9;
   border: 0;
@@ -903,5 +853,22 @@ a.desc:after {
 
 .forum_child_comment_form_button:hover {
   opacity: 0.85;
+}
+
+.block__likes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.like__button {
+  background: url("https://img.icons8.com/ios/50/000000/hearts.png");
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  margin-right: 2px;
 }
 /*# sourceMappingURL=site.css.map */

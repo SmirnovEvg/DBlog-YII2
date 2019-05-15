@@ -23,11 +23,11 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
+        'js/jquery-3.4.1.min.js',
         'js/forum.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
-        'yii\web\JQueryAsset',
     ];
 }

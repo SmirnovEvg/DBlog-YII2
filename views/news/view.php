@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Lessons */
@@ -14,15 +15,11 @@ $this->title = $news->name;
         <div class='line'></div>
         <?= Html::encode($this->title) ?>
     </div>
-    <div class='page_likes'>
+    <div class='block__likes'>
         <div>
-        <?php $form = ActiveForm::begin(); ?>
-        
-        <?= Html::submitButton('Save', ['class' => 'add__post__submit']) ?>
-    
-        <?php ActiveForm::end(); ?>
+        <div class="like__button" post-id="<?=$news->post_id?>"></div>
         </div>
-        <div id='likesCount'><?= $likes ?></div>
+        <div id='likesCount' like-count="<?= $likes ?>"><?= $likes ?></div>
     </div>
 </div>
 <div class='page_content'>
