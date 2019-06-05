@@ -39,9 +39,9 @@ use mihaildev\ckeditor\CKEditor;
             'preset' => 'standart', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
             'inline' => false, //по умолчанию false
         ],
-    ]); ?>
+    ])->label(false); ?>
 
-    <?= $form->field($model, 'type')->textInput(['readonly' => true, 'value' => 'lesson', 'class' => 'add__post__type'])->label(false) ?>
+    <?= $form->field($model, 'type')->textInput(['readonly' => true, 'value' => 'news', 'class' => 'add__post__type'])->label(false) ?>
 
     <?= Html::submitButton('Save', ['class' => 'add__post__submit']) ?>
 

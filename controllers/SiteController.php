@@ -6,6 +6,8 @@ use Yii;
 use yii\web\Controller;
 use app\models\Signup;
 use app\models\Login;
+use app\models\Lessons;
+use app\models\Post;
 
 class SiteController extends Controller
 {
@@ -57,5 +59,13 @@ class SiteController extends Controller
 
     public function actionProfile(){
         return $this->render('profile');
+    }
+    
+    public function actionLiked(){
+       $query = Post::find()
+       ->innerJoin('post_likes', 'post_likes.post_id = post.post_id')->orderBy('post_likes.like_id DESC')->all();
+        return $this->render('liked',[
+            'posts' => $query
+        ]);
     }
 }

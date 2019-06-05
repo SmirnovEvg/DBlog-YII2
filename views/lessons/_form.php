@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use mihaildev\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Lessons */
@@ -38,7 +39,7 @@ use yii\widgets\ActiveForm;
             'preset' => 'standart', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
             'inline' => false, //по умолчанию false
         ],
-    ]); ?>
+    ])->label(false); ?>
 
     <?= $form->field($model, 'type')->textInput(['readonly' => true, 'value' => 'lesson', 'class' => 'add__post__type'])->label(false) ?>
 

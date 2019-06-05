@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Languages;
+use app\models\PostLikes;
 
 /**
  * LessonsController implements the CRUD actions for Lessons model.
@@ -55,9 +56,37 @@ class LessonsController extends Controller
      */
     public function actionView($id)
     {
+        $user = Yii::$app->user->identity->id;
+        if(PostLikes::findOne(['post_id'=> $id, 'user_id' => $user])){
+            $isLike = 1;
+        }
+        else{
+            $isLike = 2;
+        }
+        $lessons = Lessons::findOne($id);
+        $likes = PostLikes::find()->where(['post_id' => $id])->count();
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'lessons' => $lessons,
+            'likes' => $likes,
+            'isLike' => $isLike
         ]);
+    }
+
+    public function actionLike(){
+        $id = Yii::$app->request->get('id');
+        $user = Yii::$app->user->identity->id;
+
+        if(PostLikes::findOne(['post_id'=> $id, 'user_id' => $user])){
+            PostLikes::findOne(['post_id'=> $id, 'user_id' => $user])->delete();
+        }
+        else{
+           $post = new PostLikes();
+           $post->post_id = $id;
+           $post->user_id = $user;
+           $post->save();
+        }
+        exit;
     }
 
     /**

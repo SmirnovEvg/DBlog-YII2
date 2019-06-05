@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ListView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PostSearch */
@@ -11,25 +12,22 @@ $this->title = 'Новости';
 
 ?>
 <div class="container">
-    <div class="col-md-3">
-        
-        <?php foreach ($categorys as $category) { ?>
-            <div class="post1">
-                    <?= Html::a($category->name, ['index', 'NewsSearch[language]' => $category->id]) ?>
+    <div class="col-md-3 language">
+        <div class="language_list">
+        <?= Html::a('all', ['index', 'NewsSearch[language]' => ''], ['id' => 'all']) ?>              
+            <?php foreach ($categorys as $category) { ?>
+                <?= Html::a($category->name, ['index', 'NewsSearch[language]' => $category->id], ['id' => $category->id]) ?>
+                <?php } ?>
             </div>
-        <?php } ?>
-        <?php if(Yii::$app->user->identity->isAdmin == 1){?>
-            <?=
-            Html::a('Создать пост', ['create'], ['class' => 'add_button']);?>
-            <?php
-        } 
-        ?>
-    </div>
-    <div class="col-md-9">
-        <div class="post-index">
-            
-            <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-
+            <?php if (!Yii::$app->user->isGuest) { ?>
+                <?= Html::a('Создать пост', ['create'], ['class' => 'add_button']); ?>
+                <?php } ?>
+            </div>
+            <div class="col-md-9">
+                <div class="post-index">
+                    
+                    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+                    
             <?= ListView::widget([
                 'dataProvider' => $dataProvider,
                 'options' => [

@@ -11,13 +11,16 @@ $this->title = 'Уроки';
 
 ?>
 <div class="container">
-    <div class="col-md-3">
-        <?php foreach ($categorys as $category) { ?>
-            <div class="post1">
-                <?= Html::a($category->name, ['index', 'LessonsSearch[language]' => $category->id]) ?>
-            </div>
+    <div class="col-md-3 language">
+        <div class="language_list">
+        <?= Html::a('all', ['index', 'LessonsSearch[language]' => ''], ['id' => 'all']) ?>
+            <?php foreach ($categorys as $category) { ?>
+                <?= Html::a($category->name, ['index', 'LessonsSearch[language]' => $category->id], ['id' => $category->id]) ?>
+            <?php } ?>
+        </div>
+        <?php if (!Yii::$app->user->isGuest) { ?>
+            <?= Html::a('Создать пост', ['create'], ['class' => 'add_button']); ?>
         <?php } ?>
-        <?= Html::a('Создать пост', ['create'], ['class' => 'add_button']) ?>
     </div>
     <div class="col-md-9">
         <div class="post-index">

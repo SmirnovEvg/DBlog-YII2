@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\CommentForm;
+use app\models\Languages;
 
 /**
  * ForumController implements the CRUD actions for Forum model.
@@ -38,15 +39,11 @@ class ForumController extends Controller
     {
         $searchModel = new ForumSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $category = Forum::find()->select(['language'])->distinct();
-        // $category = Forum::find()
-        // ->select(['forum.*'])
-        // ->innerJoin('languages', 'languages.id = forum.language')
-        // ->all();
+        $categorys = Languages::find()->all();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'category' => $category,
+            'categorys' => $categorys,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -66,13 +63,27 @@ class ForumController extends Controller
         return $this->render('view', [
             'forum' => $forum,
             'comments' => $comments,
-            'commentForm' => $commentForm
+            'commentForm' => $commentForm,
         ]);
     }
 
     public function actionComment($id)
     {
         $model = new CommentForm();
+
+        if(Yii::$app->request->isPost)
+        {
+            $model->load(Yii::$app->request->post());
+            if($model->saveComment($id))
+            {
+                return $this->redirect(['forum/view', 'id' => $id]);
+            }
+        }
+    }
+
+    public function actionChildComment($id)
+    {
+        $model = new ChildCommentForm();
 
         if(Yii::$app->request->isPost)
         {
@@ -91,7 +102,9 @@ class ForumController extends Controller
      */
     public function actionCreate()
     {
+        $user = Yii::$app->user->identity->id;
         $model = new Forum();
+        $model->user_id = $user;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->forum_id]);

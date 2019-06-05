@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Lessons */
 
-$this->title = $model->name;
+$this->title = $lessons->name;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="page_headline">
@@ -14,27 +14,29 @@ $this->title = $model->name;
         <div class='line'></div>
         <?= Html::encode($this->title) ?>
     </div>
-    <div class='page_likes'>
+    <div class='block__likes'>
         <div>
-            <form method='POST' onsubmit='show()'>
-                <input type='submit' name='likeBut' value='' id='sub' />
-            </form>
+        <div class="like__button" post-id="<?=$lessons->post_id?>"></div>
         </div>
-        <div id='likesCount'>1</div>
+        <div id='likesCount' like-count="<?= $likes ?>"><?= $likes ?></div>
     </div>
 </div>
 <div class='page_content'>
-    <?= $model->content ?>
+    <?= $lessons->content ?>
 </div>
 <p>
-    <?= Html::a('Обновить', ['update', 'id' => $model->post_id], ['class' => 'add_button']) ?>
-    <?= Html::a('Удалить', ['delete', 'id' => $model->post_id], [
-        'class' => 'add_button',
-        'style' => 'background-color: #d9b2aa',
-        'data' => [
-            'confirm' => 'Точно удалить этот пост?',
-            'method' => 'post',
-        ],
-    ]) ?>
+<?php if (Yii::$app->user->identity->isAdmin == 1) { ?>
+        <?= Html::a('Обновить', ['update', 'id' => $lessons->post_id], ['class' => 'add_button']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $lessons->post_id], [
+            'class' => 'add_button',
+            'style' => 'background-color: #d9b2aa',
+            'data' => [
+                'confirm' => 'Точно удалить этот пост?',
+                'method' => 'post',
+            ],
+        ]) ?>
+    <?php
+}
+?>
 </p>
 </div>

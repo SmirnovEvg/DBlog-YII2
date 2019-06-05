@@ -425,7 +425,9 @@ a.desc:after {
 
 .lessons-create h1, .lessons-update h1,
 .news-create h1,
-.news-update h1 {
+.news-update h1,
+.forum-create h1,
+.forum-update h1 {
   font-family: poiret;
   margin-bottom: 40px;
 }
@@ -435,7 +437,7 @@ a.desc:after {
   color: #000;
   background-color: #e9e9e9;
   margin-top: 25px;
-  padding: 2px 75px 5px 75px;
+  padding: 2px 93px 5px 93px;
   border-radius: 15px;
   font-family: poiret;
   font-size: 1.2em;
@@ -648,6 +650,16 @@ a.desc:after {
 
 .question_info {
   width: 90px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .forum_headline {
@@ -759,6 +771,19 @@ a.desc:after {
   margin-top: 10px;
 }
 
+.forum_comment_form form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 20px;
+  width: 980px;
+  float: right;
+}
+
 .forum_comment_form_button {
   background-color: #aad1d9;
   border: 0;
@@ -849,6 +874,7 @@ a.desc:after {
   font-size: 1em;
   -webkit-transition: 0.2s all ease;
   transition: 0.2s all ease;
+  width: 100px !important;
 }
 
 .forum_child_comment_form_button:hover {
@@ -870,5 +896,141 @@ a.desc:after {
   height: 50px;
   cursor: pointer;
   margin-right: 2px;
+}
+
+.language {
+  padding: 0 !important;
+}
+
+.language_list {
+  background-color: #e9e9e9;
+  border-radius: 15px;
+  padding: 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.language_list a {
+  width: 100%;
+  color: #000;
+  font-family: poiret;
+  padding: 3px 0 5px 30px;
+  font-size: 1.3em;
+  -webkit-transition: 0.2s all ease;
+  transition: 0.2s all ease;
+}
+
+.language_list a:hover {
+  padding-left: 35px;
+  text-decoration: none;
+  color: #000;
+}
+
+footer {
+  background-color: #ccd0d7;
+  height: 150px;
+  margin-top: 20px;
+  padding-top: 30px;
+  font-family: poiret;
+  font-size: 1.2em;
+}
+
+.news-mailing {
+  background-color: #e9e9e9;
+  border-radius: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 295px;
+  padding: 4px 0px 4px 0px;
+  margin-top: 15px;
+}
+
+.news-mailing input {
+  border: 0;
+  background-color: #e9e9e9;
+  font-family: poiret;
+  width: 240px;
+  height: 20px;
+  outline: none !important;
+  font-size: 0.9em;
+}
+
+.news-mailing button {
+  background-color: #e9e9e9;
+  border: 0;
+  width: 35px;
+  height: auto;
+  outline: 0;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.news-mailing button img {
+  width: 100%;
+  height: auto;
+}
+
+.news-mailing button:hover {
+  opacity: 0.9;
+}
+
+.social {
+  margin-top: 12px;
+}
+
+.social img {
+  width: auto;
+  height: 28px;
+  margin-right: 7px;
+}
+
+.social img:hover {
+  opacity: 0.9;
+}
+
+.contacts {
+  font-family: poiret;
+  margin-top: 4px;
+  font-size: 0.9em;
+}
+
+.contacts a {
+  color: #000;
+}
+
+.contacts a:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+.contacts p {
+  margin-bottom: 0;
+}
+
+.formFooter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 /*# sourceMappingURL=site.css.map */

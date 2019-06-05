@@ -18,7 +18,7 @@ class ForumSearch extends Forum
     {
         return [
             [['forum_id', 'user_id', 'language'], 'integer'],
-            [['name', 'text', 'date'], 'safe'],
+            [['name', 'text', 'date', 'language'], 'safe'],
         ];
     }
 
@@ -61,10 +61,10 @@ class ForumSearch extends Forum
             'forum_id' => $this->forum_id,
             'user_id' => $this->user_id,
             'date' => $this->date,
-            'language' => $this->language,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'language', $this->language])
             ->andFilterWhere(['like', 'text', $this->text]);
 
         return $dataProvider;

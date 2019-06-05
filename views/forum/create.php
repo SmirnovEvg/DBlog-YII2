@@ -5,9 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Forum */
 
-$this->title = 'Create Forum';
-$this->params['breadcrumbs'][] = ['label' => 'Forums', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Создать вопрос на форум';
 ?>
 <div class="forum-create">
 

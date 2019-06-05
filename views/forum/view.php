@@ -22,7 +22,7 @@ $this->title = $forum->name;
         <?= $forum->user->username ?>
     </div>
     <div class='forum_question_info_date'>
-        <?= $forum->date ?>
+        <?= $forum->getDate() ?>
     </div>
 </div>
 <div class='forum_comments_block'>
@@ -44,7 +44,7 @@ $this->title = $forum->name;
                                 <?= $comment->user->username ?>
                             </div>
                             <div class='forum_comment_content_user_date'>
-                                <?= $comment->date ?>
+                                <?= $comment->getDate() ?>
                             </div>
                             <div class='forum_comment_content_user_answer'>
                             </div>
@@ -68,7 +68,7 @@ $this->title = $forum->name;
                     'preset' => 'basic', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
                     'inline' => false, //по умолчанию false
                 ],
-            ]); ?>
+            ])->label(false); ?>
             <button class='forum_child_comment_form_button' type="submit">Отправить</button>
             <?php ActiveForm::end(); ?>
         </div>
